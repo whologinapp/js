@@ -11,7 +11,7 @@ async function run() {
     );
 
     // Request open and get WebSocket URL from API
-    const wsUrl = await api.profile.open(created.id, {
+    const { wsUrl } = await api.profile.open(created.id, {
       debuggingPort: 9222,
       headless: false,
     });

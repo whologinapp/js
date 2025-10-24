@@ -1,5 +1,3 @@
-// src/core/api-client.ts
-
 import type { ApiResponse } from '../types/internal';
 import { WhoLoginAPIError } from './error';
 

@@ -30,8 +30,8 @@ import {
   CanvasMode,
   type AudioContext,
   AudioContextMode,
-  type ClientRects,
-  ClientRectsMode,
+  type WebRTC,
+  WebRTCMode,
   type Font,
   FontMode,
   type ExtensionManager,
@@ -353,15 +353,15 @@ export class ProfileBuilder {
     return this;
   }
 
-  /** Set client rects configuration. */
-  withClientRects(clientRects: ClientRects): this {
-    this.profile.clientRects = clientRects;
+  /** Set WebRTC configuration. */
+  withWebRTC(webRTC: WebRTC): this {
+    this.profile.webRTC = webRTC;
     return this;
   }
 
-  /** Set client rects mode. */
-  withClientRectsMode(mode: ClientRectsMode, seed?: string): this {
-    this.profile.clientRects = { mode, seed };
+  /** Set WebRTC mode. */
+  withWebRTCMode(mode: WebRTCMode, value?: string | null): this {
+    this.profile.webRTC = { mode, value: value ?? null };
     return this;
   }
 
@@ -486,8 +486,8 @@ export class ProfileBuilder {
     return this.withTimeZoneMode(TimeZoneMode.System);
   }
 
-  withBasedIPTimeZone(): this {
-    return this.withTimeZoneMode(TimeZoneMode.BasedIP);
+  withIPBasedTimeZone(): this {
+    return this.withTimeZoneMode(TimeZoneMode.IPBased);
   }
 
   withCustomTimeZone(timezone: string): this {
@@ -498,16 +498,16 @@ export class ProfileBuilder {
     return this.withLanguageMode(LanguageMode.System);
   }
 
-  withBasedIPLanguage(): this {
-    return this.withLanguageMode(LanguageMode.BasedIP);
+  withIPBasedLanguage(): this {
+    return this.withLanguageMode(LanguageMode.IPBased);
   }
 
   withCustomLanguage(languages: string[]): this {
     return this.withLanguageMode(LanguageMode.Custom, languages);
   }
 
-  withBasedIPGeolocation(): this {
-    return this.withGeolocationMode(GeolocationMode.BasedIP);
+  withIPBasedGeolocation(): this {
+    return this.withGeolocationMode(GeolocationMode.IPBased);
   }
 
   withCustomGeolocation(
@@ -526,10 +526,6 @@ export class ProfileBuilder {
     return this.withAudioContextMode(AudioContextMode.Mask, seed);
   }
 
-  withMaskClientRects(seed?: string): this {
-    return this.withClientRectsMode(ClientRectsMode.Mask, seed);
-  }
-
   withMaskFont(seed?: string): this {
     return this.withFontMode(FontMode.Mask, seed);
   }
@@ -540,6 +536,18 @@ export class ProfileBuilder {
 
   withMaskWebGLMetadata(seed?: string): this {
     return this.withWebGLMetadataMode(WebGLMetadataMode.Mask, seed);
+  }
+
+  withIPBasedWebRTC(): this {
+    return this.withWebRTCMode(WebRTCMode.IpBased);
+  }
+
+  withOffWebRTC(): this {
+    return this.withWebRTCMode(WebRTCMode.Off);
+  }
+
+  withCustomWebRTC(value: string): this {
+    return this.withWebRTCMode(WebRTCMode.Custom, value);
   }
 
   withSystemMediaDevices(): this {

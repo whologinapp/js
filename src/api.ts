@@ -1,5 +1,3 @@
-// src/api.ts
-
 import { BaseAPIClient } from './core/api-client';
 import { profileEndpoints } from './modules/profile';
 import { proxyEndpoints } from './modules/proxy';

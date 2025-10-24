@@ -24,7 +24,8 @@ export type {
   ProfileListResponse,
   ProfileTrashResponse,
   CookieData,
-  GeolocationData
+  GeolocationData,
+  WebRTC,
 } from './modules/profile/types';
 
 export {
@@ -41,10 +42,10 @@ export {
   GeolocationMode,
   CanvasMode,
   AudioContextMode,
-  ClientRectsMode,
+  WebRTCMode,
   FontMode,
   PermissionState,
-  RestoreOnStartupMode
+  RestoreOnStartupMode,
 } from './modules/profile/types';
 
 export type {
@@ -55,7 +56,7 @@ export type {
   ProxyUpdateRequest,
   ProxyDetail,
   ProxyListResponse,
-  ProxyGeolocateRequest
+  ProxyGeolocateRequest,
 } from './modules/proxy/index';
 
 export type {
@@ -64,12 +65,12 @@ export type {
   TagCreateRequest,
   TagUpdateRequest,
   TagDetail,
-  TagListResponse
+  TagListResponse,
 } from './modules/tag/index';
 
 export type {
   // Internal types
   ApiResponse,
   ApiSuccessResponse,
-  ApiErrorResponse
+  ApiErrorResponse,
 } from './types/internal';

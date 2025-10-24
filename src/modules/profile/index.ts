@@ -40,11 +40,11 @@ export interface ProfileAPI {
   ): Promise<ProfileDetail>;
   /** Delete a profile by id. */
   delete(profileId: string): Promise<{ success: boolean }>;
-  /** Open a profile; returns WebSocket URL string or null. */
+  /** Open a profile; returns object with WebSocket URL. */
   open(
     profileId: string,
     openRequest?: ProfileOpenRequest
-  ): Promise<string | null>;
+  ): Promise<{ wsUrl: string | null }>;
   /** Close a profile by id. */
   close(profileId: string): Promise<{ success: boolean }>;
   /** Add tags to a profile. */
@@ -181,12 +181,12 @@ export const profileEndpoints = (request: RequestHandler): ProfileAPI => ({
   },
 
   /**
-   * Open a profile and return WebSocket URL string when available.
-   * Returns undefined when backend responds with data=null (no debugging port).
+   * Open a profile and return object with WebSocket URL.
+   * Returns { wsUrl: null } when backend responds with data=null (no debugging port).
    */
   open: (profileId: string, openRequest?: ProfileOpenRequest) => {
     // Some backends require a JSON body for POST; send {} when undefined
-    return request<string | null>(
+    return request<{ wsUrl: string | null }>(
       `/profile/${profileId}/open`,
       'POST',
       openRequest ?? {}

@@ -43,7 +43,10 @@ export const tagEndpoints = (request: RequestHandler): TagAPI => ({
    * Get all tags.
    */
   getAll: async () => {
-    const resp = await request<TagListResponse | TagDetail[]>('/tag/all', 'GET');
+    const resp = await request<TagListResponse | TagDetail[]>(
+      '/tag/all',
+      'GET'
+    );
     return Array.isArray(resp) ? resp : resp?.tags ?? [];
   },
 

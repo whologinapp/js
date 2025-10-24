@@ -5,21 +5,18 @@ export type Browser = {
   version?: SpecterVersion;
 };
 
-export type OS = 
-  | { type: 'windows' }
-  | { type: 'linux' }
-  | { type: 'android' };
+export type OS = { type: 'windows' } | { type: 'linux' } | { type: 'android' };
 
 export const OS = {
   Windows: { type: 'windows' } as const,
   Linux: { type: 'linux' } as const,
-  Android: { type: 'android' } as const
+  Android: { type: 'android' } as const,
 } as const;
 
 export enum UserAgentMode {
   System = 'system',
   Mask = 'mask',
-  Custom = 'custom'
+  Custom = 'custom',
 }
 
 export interface UserAgentMetadata {
@@ -45,7 +42,7 @@ export interface UserAgent {
 export enum NavigatorMode {
   System = 'system',
   Mask = 'mask',
-  Custom = 'custom'
+  Custom = 'custom',
 }
 
 export interface NavigatorCustom {
@@ -64,7 +61,7 @@ export interface Navigator {
 export enum ScreenMode {
   System = 'system',
   Mask = 'mask',
-  Custom = 'custom'
+  Custom = 'custom',
 }
 
 export interface ScreenCustom {
@@ -83,7 +80,7 @@ export interface Screen {
 
 export enum MediaDevicesMode {
   System = 'system',
-  Mask = 'mask'
+  Mask = 'mask',
 }
 
 export interface MediaDevices {
@@ -94,7 +91,7 @@ export interface MediaDevices {
 export enum WebGLMetadataMode {
   System = 'system',
   Mask = 'mask',
-  Custom = 'custom'
+  Custom = 'custom',
 }
 
 export interface WebGLMetadataCustom {
@@ -110,7 +107,7 @@ export interface WebGLMetadata {
 
 export enum WebGLImageMode {
   System = 'system',
-  Mask = 'mask'
+  Mask = 'mask',
 }
 
 export interface WebGLImage {
@@ -120,8 +117,8 @@ export interface WebGLImage {
 
 export enum TimeZoneMode {
   System = 'system',
-  BasedIP = 'based-ip',
-  Custom = 'custom'
+  IPBased = 'ip-based',
+  Custom = 'custom',
 }
 
 export interface TimeZone {
@@ -131,8 +128,8 @@ export interface TimeZone {
 
 export enum LanguageMode {
   System = 'system',
-  BasedIP = 'based-ip',
-  Custom = 'custom'
+  IPBased = 'ip-based',
+  Custom = 'custom',
 }
 
 export interface Language {
@@ -141,8 +138,8 @@ export interface Language {
 }
 
 export enum GeolocationMode {
-  BasedIP = 'based-ip',
-  Custom = 'custom'
+  IPBased = 'ip-based',
+  Custom = 'custom',
 }
 
 export interface GeolocationCustom {
@@ -158,7 +155,7 @@ export interface Geolocation {
 
 export enum CanvasMode {
   System = 'system',
-  Mask = 'mask'
+  Mask = 'mask',
 }
 
 export interface Canvas {
@@ -168,7 +165,7 @@ export interface Canvas {
 
 export enum AudioContextMode {
   System = 'system',
-  Mask = 'mask'
+  Mask = 'mask',
 }
 
 export interface AudioContext {
@@ -176,19 +173,20 @@ export interface AudioContext {
   seed?: string;
 }
 
-export enum ClientRectsMode {
-  System = 'system',
-  Mask = 'mask'
+export enum WebRTCMode {
+  IpBased = 'ip-based',
+  Custom = 'custom',
+  Off = 'off',
 }
 
-export interface ClientRects {
-  mode: ClientRectsMode;
-  seed?: string;
+export interface WebRTC {
+  mode: WebRTCMode;
+  value: string | null;
 }
 
 export enum FontMode {
   System = 'system',
-  Mask = 'mask'
+  Mask = 'mask',
 }
 
 export interface Font {
@@ -213,7 +211,7 @@ export interface ExtensionManager {
 export enum PermissionState {
   Allow = 'allow',
   Prompt = 'prompt',
-  Block = 'block'
+  Block = 'block',
 }
 
 export interface Permissions {
@@ -228,7 +226,7 @@ export interface Dns {
 export enum RestoreOnStartupMode {
   Default = 'default',
   Last = 'last',
-  Urls = 'urls'
+  Urls = 'urls',
 }
 
 export interface RestoreOnStartup {
@@ -255,7 +253,7 @@ export interface ProfileData {
   geolocation?: Geolocation;
   canvas?: Canvas;
   audioContext?: AudioContext;
-  clientRects?: ClientRects;
+  webRTC?: WebRTC;
   font?: Font;
   webGLImage?: WebGLImage;
   extensionManager?: ExtensionManager;

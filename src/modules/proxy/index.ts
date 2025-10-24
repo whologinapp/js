@@ -16,8 +16,22 @@ export interface GeoFromIp {
 export type NetworkProxy =
   | { type: 'direct'; geoFromIp?: GeoFromIp | null }
   | { type: 'block' }
-  | { type: 'http'; host: string; port: number; username?: string; password?: string; geoFromIp?: GeoFromIp | null }
-  | { type: 'socks5'; host: string; port: number; username?: string; password?: string; geoFromIp?: GeoFromIp | null }
+  | {
+      type: 'http';
+      host: string;
+      port: number;
+      username?: string;
+      password?: string;
+      geoFromIp?: GeoFromIp | null;
+    }
+  | {
+      type: 'socks5';
+      host: string;
+      port: number;
+      username?: string;
+      password?: string;
+      geoFromIp?: GeoFromIp | null;
+    }
   | {
       type: 'wireguard';
       publicKey: string;
@@ -68,7 +82,10 @@ export interface ProxyAPI {
   /** Create a new proxy. */
   create(createRequest: ProxyCreateRequest): Promise<ProxyDetail>;
   /** Update a proxy by id. */
-  update(proxyId: string, updateRequest: ProxyUpdateRequest): Promise<ProxyDetail>;
+  update(
+    proxyId: string,
+    updateRequest: ProxyUpdateRequest
+  ): Promise<ProxyDetail>;
   /** Delete a proxy by id. */
   delete(proxyId: string): Promise<{ success: boolean }>;
   /** Geolocate a proxy by id. */
@@ -82,7 +99,10 @@ export const proxyEndpoints = (request: RequestHandler): ProxyAPI => ({
    * Get all proxies.
    */
   getAll: async () => {
-    const resp = await request<ProxyListResponse | ProxyDetail[]>('/proxy/all', 'GET');
+    const resp = await request<ProxyListResponse | ProxyDetail[]>(
+      '/proxy/all',
+      'GET'
+    );
     return Array.isArray(resp) ? resp : resp?.proxies ?? [];
   },
 
@@ -97,7 +117,11 @@ export const proxyEndpoints = (request: RequestHandler): ProxyAPI => ({
    * Update a proxy by id.
    */
   update: (proxyId: string, updateRequest: ProxyUpdateRequest) => {
-    return request<ProxyDetail>(`/proxy/${proxyId}/update`, 'POST', updateRequest);
+    return request<ProxyDetail>(
+      `/proxy/${proxyId}/update`,
+      'POST',
+      updateRequest
+    );
   },
 
   /**
@@ -118,7 +142,11 @@ export const proxyEndpoints = (request: RequestHandler): ProxyAPI => ({
    * Geolocate a proxy by configuration payload.
    */
   geolocate: (geolocateRequest: ProxyGeolocateRequest) => {
-    return request<GeolocationData>('/proxy/geolocate', 'POST', geolocateRequest);
+    return request<GeolocationData>(
+      '/proxy/geolocate',
+      'POST',
+      geolocateRequest
+    );
   },
 });
 

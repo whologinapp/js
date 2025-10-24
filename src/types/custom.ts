@@ -1,6 +1,6 @@
-export type { 
+export type {
   ProfileData,
-  ProfileCreateRequest, 
+  ProfileCreateRequest,
   ProfileUpdateRequest,
   ProfileDetail,
   ProfileSearchRequest,
@@ -8,7 +8,9 @@ export type {
   ProfileListResponse,
   ProfileTrashResponse,
   CookieData,
-  GeolocationData
+  GeolocationData,
+  WebRTC,
+  WebRTCMode,
 } from '../modules/profile/types';
 
 export type {
@@ -18,7 +20,7 @@ export type {
   ProxyUpdateRequest,
   ProxyDetail,
   ProxyListResponse,
-  ProxyGeolocateRequest
+  ProxyGeolocateRequest,
 } from '../modules/proxy/index';
 
 export type {
@@ -26,5 +28,5 @@ export type {
   TagCreateRequest,
   TagUpdateRequest,
   TagDetail,
-  TagListResponse
+  TagListResponse,
 } from '../modules/tag/index';
